@@ -1,8 +1,9 @@
 import { Authenticator } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
 
-import '@aws-amplify/ui-react/styles.css';
+import "@aws-amplify/ui-react/styles.css";
 
-import { API, Auth } from "aws-amplify";
+import { API } from "aws-amplify";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 
@@ -41,17 +42,20 @@ const Wrapper = styled.div`
 export default () => (
   <Wrapper>
     <Navbar />
-    <Authenticator signUpAttributes={['email']} socialProviders={['google', 'facebook']} initialState="signUp">
+    <Authenticator
+      signUpAttributes={["email", "name"]}
+      socialProviders={["google", "facebook"]}
+      initialState="signUp"
+    >
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {user.username}</h1>
+          <h1>Hello {user.attributes.name}</h1>
           <button onClick={signOut}>Sign out</button>
         </main>
       )}
     </Authenticator>
 
-  
-      {/* <form onSubmit={handleCreateUser}>
+    {/* <form onSubmit={handleCreateUser}>
         <fieldset>
           <legend>Title</legend>
           <input

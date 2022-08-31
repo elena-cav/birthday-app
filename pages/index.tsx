@@ -1,12 +1,10 @@
-import { Amplify, withSSRContext } from "aws-amplify";
+import React, { useState } from "react";
+import { withSSRContext } from "aws-amplify";
 import Head from "next/head";
-import React from "react";
-import awsExports from "../src/aws-exports";
+import { Auth } from "aws-amplify";
+
 import { listUsers } from "../src/graphql/queries";
 import styles from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
-
-Amplify.configure({ ...awsExports, ssr: true });
 
 export async function getServerSideProps({ req }) {
   const SSR = withSSRContext({ req });
@@ -19,6 +17,12 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function Home() {
+  const [userName, setUserName] = useState("");
+
+  Auth
+    .currentAuthenticatedUser()
+    .then(a => setUserName(a.attributes.name));
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -27,7 +31,6 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Navbar />
         <a href="/login">Login</a>
         <h1 className={styles.title}>Birthdays</h1>
       </main>
