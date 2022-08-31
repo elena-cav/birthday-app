@@ -1,6 +1,9 @@
 import { Auth } from "aws-amplify";
 import styled from "styled-components";
 
+import { Button } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
 const NavBarWrapper = styled.div`
   margin: 12px;
 `;
@@ -10,7 +13,7 @@ const Title = styled.h2`
   float: left;
 `;
 
-const SignoutButton = styled.button`
+const SignoutButton = styled(Button)`
   float: right;
 `;
 
@@ -19,7 +22,11 @@ export default () => {
     <NavBarWrapper>
       <Title>Birthdays</Title>
 
-      <SignoutButton type="button" onClick={() => Auth.signOut()}>
+      <SignoutButton 
+        variation="primary" 
+        type="button"
+        onClick={() => Auth.signOut()}
+      >
         Sign out
       </SignoutButton>
     </NavBarWrapper>
