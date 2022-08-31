@@ -16,13 +16,7 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function Home() {
-  const [userName, setUserName] = useState("");
-
-  Auth
-    .currentAuthenticatedUser()
-    .then(a => setUserName(a.attributes.name));
-  
+export default function Birthdays({ user }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -31,8 +25,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <a href="/login">Login</a>
-        <h1 className={styles.title}>Birthdays for {userName}</h1>
+        <h1 className={styles.title}>Birthdays for {user?.attributes?.name}</h1>
       </main>
     </div>
   );

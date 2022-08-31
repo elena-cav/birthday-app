@@ -14,7 +14,7 @@ const Title = styled.h2`
   float: left;
 `;
 
-const SignoutButton = styled(Button)`
+const AuthButton = styled(Button)`
   float: right;
 `;
 
@@ -25,13 +25,13 @@ export default ({ isAuthenticated }) => {
     <NavBarWrapper>
       <Title>Birthdays</Title>
 
-      <SignoutButton 
+      <AuthButton 
         variation="primary" 
         type="button"
         onClick={() => isAuthenticated ? Auth.signOut() : router.push("/login")}
       >
         {isAuthenticated ? "Sign out" : "Login"}
-      </SignoutButton>
+      </AuthButton>
     </NavBarWrapper>
   );
 };

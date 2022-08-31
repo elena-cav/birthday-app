@@ -45,7 +45,7 @@ export default () => (
     >
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {user.attributes.name}</h1>
+          <h1>Thanks, {user.attributes.name} you are now logged in!</h1>
         </main>
       )}
     </Authenticator>
