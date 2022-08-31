@@ -1,5 +1,6 @@
 import { Auth } from "aws-amplify";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import { Button } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
@@ -17,7 +18,9 @@ const SignoutButton = styled(Button)`
   float: right;
 `;
 
-export default () => {
+export default ({ isAuthenticated }) => {
+  const router = useRouter();
+
   return (
     <NavBarWrapper>
       <Title>Birthdays</Title>
@@ -25,9 +28,9 @@ export default () => {
       <SignoutButton 
         variation="primary" 
         type="button"
-        onClick={() => Auth.signOut()}
+        onClick={() => isAuthenticated ? Auth.signOut() : router.push("/login")}
       >
-        Sign out
+        {isAuthenticated ? "Sign out" : "Login"}
       </SignoutButton>
     </NavBarWrapper>
   );

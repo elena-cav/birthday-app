@@ -1,11 +1,8 @@
 import { Authenticator } from "@aws-amplify/ui-react";
-import { Auth } from "aws-amplify";
-
-import "@aws-amplify/ui-react/styles.css";
-
 import { API } from "aws-amplify";
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
+
+import "@aws-amplify/ui-react/styles.css";
 
 import { createUser } from "../src/graphql/mutations";
 
@@ -41,7 +38,6 @@ const Wrapper = styled.div`
 
 export default () => (
   <Wrapper>
-    <Navbar />
     <Authenticator
       signUpAttributes={["email", "name"]}
       socialProviders={["google", "facebook"]}
@@ -50,30 +46,8 @@ export default () => (
       {({ signOut, user }) => (
         <main>
           <h1>Hello {user.attributes.name}</h1>
-          <button onClick={signOut}>Sign out</button>
         </main>
       )}
     </Authenticator>
-
-    {/* <form onSubmit={handleCreateUser}>
-        <fieldset>
-          <legend>Title</legend>
-          <input
-            defaultValue={`Today, ${new Date().toLocaleTimeString()}`}
-            name="title"
-          />
-        </fieldset>
-
-        <fieldset>
-          <legend>Content</legend>
-          <textarea
-            defaultValue="I built an Amplify app with Next.js!"
-            name="content"
-          />
-        </fieldset>
-
-        <button>Create Post</button>
-       
-      </form> */}
   </Wrapper>
 );

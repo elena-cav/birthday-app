@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Amplify } from "aws-amplify";
 import { Auth } from "aws-amplify";
 
@@ -10,9 +11,11 @@ Amplify.configure({ ...awsExports, ssr: true });
 Auth.configure(awsExports);
 
 function MyApp({ Component, pageProps }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <PageGrid>
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated} />
       <Component {...pageProps} />
     </PageGrid>
   );
