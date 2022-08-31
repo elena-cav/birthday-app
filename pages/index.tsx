@@ -4,6 +4,7 @@ import React from "react";
 import awsExports from "../src/aws-exports";
 import { listUsers } from "../src/graphql/queries";
 import styles from "../styles/Home.module.css";
+import Navbar from "../components/Navbar";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -26,6 +27,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <Navbar />
         <a href="/login">Login</a>
         <h1 className={styles.title}>Birthdays</h1>
       </main>

@@ -4,6 +4,7 @@ import '@aws-amplify/ui-react/styles.css';
 
 import { API, Auth } from "aws-amplify";
 import styled from "styled-components";
+import Navbar from "../components/Navbar";
 
 import { createUser } from "../src/graphql/mutations";
 
@@ -39,6 +40,7 @@ const Wrapper = styled.div`
 
 export default () => (
   <Wrapper>
+    <Navbar />
     <Authenticator signUpAttributes={['email']} socialProviders={['google', 'facebook']} initialState="signUp">
       {({ signOut, user }) => (
         <main>
@@ -67,9 +69,7 @@ export default () => (
         </fieldset>
 
         <button>Create Post</button>
-        <button type="button" onClick={() => Auth.signOut()}>
-          Sign out
-        </button>
+       
       </form> */}
   </Wrapper>
 );
