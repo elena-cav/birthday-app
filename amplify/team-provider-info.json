@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-birthdayapp-dev-122534-authRole",
+      "UnauthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-dev-122534-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-dev-122534-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-birthdayapp-dev-122534-deployment",
+      "UnauthRoleName": "amplify-birthdayapp-dev-122534-unauthRole",
+      "StackName": "amplify-birthdayapp-dev-122534",
+      "StackId": "arn:aws:cloudformation:eu-west-1:866474589211:stack/amplify-birthdayapp-dev-122534/40e99570-2917-11ed-b9e6-067c641e22d1",
+      "AmplifyAppId": "d2f54p4t0xxbzh"
+    },
+    "categories": {
+      "auth": {
+        "birthdayappe1082c8b": {}
+      }
+    }
+  }
+}
