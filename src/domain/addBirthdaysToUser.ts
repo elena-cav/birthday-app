@@ -10,8 +10,6 @@ export default async (user, newBirthday) => {
 
   if (!userFromDatabase?.data?.getUser) return;
 
-  console.log(userFromDatabase, newBirthday);
-
   const currentBirthdays = userFromDatabase.data.getUser.birthdays;
 
   const { data } = await API.graphql(graphqlOperation(updateUser, { 
@@ -20,8 +18,6 @@ export default async (user, newBirthday) => {
       birthdays: [...currentBirthdays, newBirthday] 
     }
   }));
-
-  console.log('update bdays', data)
 
   return data.updateUser;
 }

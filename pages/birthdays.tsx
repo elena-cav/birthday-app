@@ -22,7 +22,9 @@ export default ({ cognitoUser, user }) => {
 
       <main>
         <h2>Birthdays for {cognitoUser?.attributes?.name}</h2>
-        <Button variation="primary" onClick={() => setModalIsOpen(true)}>Add Birthday</Button>
+        <Button variation="primary" onClick={() => setModalIsOpen(true)}>
+          Add Birthday
+        </Button>
         <h2>Birthdays</h2>
         {user?.birthdays?.map((birthday) => (
           <>
@@ -31,14 +33,13 @@ export default ({ cognitoUser, user }) => {
           </>
         ))}
       </main>
-      <Modal 
-        modalIsOpen={modalIsOpen} 
+      <Modal
+        modalIsOpen={modalIsOpen}
         closeModal={() => setModalIsOpen(false)}
         onSubmit={(name, date) => {
-          addBirthdaysToUser(cognitoUser, { name, date })
-            .then(res => console.log(res))
+          addBirthdaysToUser(cognitoUser, { name, date });
         }}
       />
     </div>
   );
-}
+};
