@@ -6,7 +6,7 @@ import "@aws-amplify/ui-react/styles.css";
 import React from "react";
 
 const NavBarWrapper = styled.div`
-  margin: 12px;
+  margin: 2rem 3rem;
 `;
 
 const Title = styled.a`
