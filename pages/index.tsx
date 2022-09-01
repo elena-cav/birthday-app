@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { listUsers } from "../src/graphql/queries";
 import styles from "../styles/Home.module.css";
 import LandingPageInformationGrid from "../src/components/LandingPageInformationGrid";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ req }) {
   const SSR = withSSRContext({ req });
@@ -49,7 +50,13 @@ const LandingPageTitle = styled.h1`
   }
 `;
 
-export default function Home() {
+export default function Home({ isAuthenticated }) {
+  const router = useRouter();
+
+  if (isAuthenticated) {
+    router.push("/birthdays");
+  }
+
   return (
     <div className={styles.container}>
       <Head>

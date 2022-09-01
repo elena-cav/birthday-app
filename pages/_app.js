@@ -16,6 +16,7 @@ Auth.configure(awsExports);
 function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
+  const router = useRouter();
 
   console.log(user);
 
@@ -39,7 +40,7 @@ function MyApp({ Component, pageProps }) {
           setIsAuthenticated={setIsAuthenticated}
           isAuthenticated={isAuthenticated}
         />
-        <Component {...pageProps} user={user} />
+        <Component {...pageProps} user={user} isAuthenticated={isAuthenticated} />
       </PageGrid>
     );
   };
