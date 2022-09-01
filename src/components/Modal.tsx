@@ -1,10 +1,12 @@
 import React from "react";
 import Modal from "react-modal";
-import LandingPageTitle from "../components/Title";
-import { TextField } from "@aws-amplify/ui-react";
+import { TextField, Button } from "@aws-amplify/ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+
+import LandingPageTitle from "../components/Title";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -17,10 +19,23 @@ const customStyles = {
 };
 const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
+  color: black;
 `;
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-// Modal.setAppElement("#yourAppElement");
+const ClosingCross = styled.button`
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
 export default () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -44,19 +59,21 @@ export default () => {
       >
         <LandingPageTitle text="Add a new birthday" />
 
-        <button onClick={closeModal}>
-          {" "}
+        <ClosingCross onClick={closeModal}>
           <StyledIcon icon={faClose} />
-        </button>
-        <div>I am a modal</div>
-        <form>
+        </ClosingCross>
+
+        <Form>
           <TextField
             label=""
             placeholder="Name"
             errorMessage="There is an error"
           />
+
           <TextField label="" type="date" errorMessage="There is an error" />
-        </form>
+
+          <Button variation="primary" onClick={() => {}}>Add</Button>
+        </Form>
       </Modal>
     </div>
   );
