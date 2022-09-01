@@ -9,9 +9,11 @@ const NavBarWrapper = styled.div`
   margin: 12px;
 `;
 
-const Title = styled.h2`
+const Title = styled.a`
   margin: 0 auto;
   float: left;
+  font-size: 2rem;
+  font-weight: bold;
 `;
 
 const AuthButton = styled(Button)`
@@ -37,7 +39,7 @@ export default ({ isAuthenticated, setIsAuthenticated }) => {
   console.log("AUTHENTICATED", isAuthenticated);
   return (
     <NavBarWrapper>
-      <Title>Birthdays</Title>
+      <Title href="/">Birthdays</Title>
       <AuthButton variation="primary" type="button" onClick={loginSignout}>
         {isAuthenticated ? "Sign out" : "Login"}
       </AuthButton>
