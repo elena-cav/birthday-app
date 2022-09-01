@@ -17,32 +17,27 @@ function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
 
+  console.log(user);
+
   useEffect(() => {
+    console.log("RERENDERING");
     Auth.currentAuthenticatedUser()
       .then(setUser)
-      .then(() => {
-        console.log("RERENDERING");
-        return setIsAuthenticated(true);
-      })
       .catch(() => console.log("no user logged in"));
   }, []);
 
   const App = () => {
     const { route } = useAuthenticator((context) => [context.route]);
 
-    return route === "authenticated" ? (
+    useEffect(() => {
+      setIsAuthenticated(route === "authenticated");
+    }, [route])
+
+    return (
       <PageGrid>
         <Navbar
           setIsAuthenticated={setIsAuthenticated}
-          isAuthenticated={true}
-        />
-        <Component {...pageProps} user={user} />
-      </PageGrid>
-    ) : (
-      <PageGrid>
-        <Navbar
-          setIsAuthenticated={setIsAuthenticated}
-          isAuthenticated={false}
+          isAuthenticated={isAuthenticated}
         />
         <Component {...pageProps} user={user} />
       </PageGrid>
