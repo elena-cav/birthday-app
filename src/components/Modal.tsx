@@ -60,13 +60,13 @@ export default ({ modalIsOpen, closeModal, onSubmit }) => {
             label=""
             placeholder="Name"
             errorMessage="There is an error"
-            onChange={setName}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             label=""
             type="date"
             errorMessage="There is an error"
-            onChange={setDate}
+            onChange={(e) => setDate(e.target.value)}
           />
           <Button
             variation="primary"
