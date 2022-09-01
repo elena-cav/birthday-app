@@ -4,16 +4,15 @@ import { useRouter } from "next/router";
 import { Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import React from "react";
+import Link from 'next/link'
 
 const NavBarWrapper = styled.div`
   margin: 2rem 3rem;
 `;
 
-const Title = styled.a`
+const Title = styled.h1`
   margin: 0 auto;
   float: left;
-  font-size: 2rem;
-  font-weight: bold;
 `;
 
 const AuthButton = styled(Button)`
@@ -39,7 +38,7 @@ export default ({ isAuthenticated, setIsAuthenticated }) => {
   console.log("AUTHENTICATED", isAuthenticated);
   return (
     <NavBarWrapper>
-      <Title href="/">Birthdays</Title>
+      <Title><Link href="/">Birthdays</Link></Title>
       <AuthButton variation="primary" type="button" onClick={loginSignout}>
         {isAuthenticated ? "Sign out" : "Login"}
       </AuthButton>
