@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
     Auth.currentAuthenticatedUser()
       .then(setUser)
       .catch(() => console.log("no user logged in"));
-  }, []);
+  }, [isAuthenticated]);
 
   const App = () => {
     const { route } = useAuthenticator((context) => [context.route]);
