@@ -33,6 +33,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-item: center;
+  min-height: 100vh;
 `;
 
 export default () => (
