@@ -1,18 +1,31 @@
 import React, { useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import styled from "styled-components";
 import Head from "next/head";
-import { Button } from "@aws-amplify/ui-react";
-
+import { Button, Card, Heading, Text, Flex } from "@aws-amplify/ui-react";
+import { useRouter } from "next/router";
 import Modal from "../src/components/Modal";
-
-import { getUser } from "../src/graphql/queries";
-import { updateUser } from "../src/graphql/mutations";
 import styles from "../styles/Home.module.css";
 import addBirthdaysToUser from "../src/domain/addBirthdaysToUser";
 
 export default ({ cognitoUser, user }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const router = useRouter();
+  const calculateAge = (birthday) => {
+    const ageDifMs = Date.now() - Date.parse(birthday);
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
+  const BirthdaysWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    justify-content: flex-start;
+  `;
+  const CardWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  `;
   return (
     <div className={styles.container}>
       <Head>
@@ -26,16 +39,28 @@ export default ({ cognitoUser, user }) => {
           Add Birthday
         </Button>
         <h2>Birthdays</h2>
-        {user?.birthdays?.map((birthday) => (
-          <>
-            <span>{birthday.name}</span>
-            <span>{birthday.date}</span>
-          </>
-        ))}
+        <BirthdaysWrapper>
+          {user?.birthdays?.map(({ name, date }, i) => (
+            <>
+              <Card key={i}>
+                <Flex direction="column" alignItems="flex-start" gap={2}>
+                  <Heading level={5}>{name}</Heading>
+                  <Text as="span">{date}</Text>
+                  <Text as="span">{calculateAge(date)} years old</Text>
+                  <Button variation="primary">Send a card</Button>
+                  <Button variation="primary">Find a gift</Button>
+                </Flex>
+              </Card>
+            </>
+          ))}
+        </BirthdaysWrapper>
       </main>
       <Modal
         modalIsOpen={modalIsOpen}
-        closeModal={() => setModalIsOpen(false)}
+        closeModal={() => {
+          setModalIsOpen(false);
+          router.reload();
+        }}
         onSubmit={(name, date) => {
           addBirthdaysToUser(cognitoUser, { name, date });
         }}

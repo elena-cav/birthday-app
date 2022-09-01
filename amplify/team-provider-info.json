@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "birthdayappe1082c8b": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2f54p4t0xxbzh",
+          "type": "cicd"
+        }
       }
     }
   }

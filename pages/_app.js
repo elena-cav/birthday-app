@@ -3,7 +3,7 @@ import { Amplify } from "aws-amplify";
 import { Auth } from "aws-amplify";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { useRouter } from "next/router";
-
+import NextNProgress from "nextjs-progressbar";
 import "../styles/globals.css";
 import awsExports from "../src/aws-exports";
 import Navbar from "../src/components/Navbar";
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     addUserToDatabase(cognitoUser)
       .then(setUser)
-      .catch((e) => console.log(e))
+      .catch((e) => console.log(e));
   }, [cognitoUser]);
 
   const App = () => {
@@ -61,6 +61,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Authenticator.Provider>
+      <NextNProgress />
       <App />
     </Authenticator.Provider>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { TextField, Button } from "@aws-amplify/ui-react";
+import styled from "styled-components";
+import { TextField, Text, Button } from "@aws-amplify/ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
 
 import LandingPageTitle from "../components/Title";
 
@@ -36,10 +36,29 @@ const Form = styled.form`
   flex-direction: column;
   gap: 1rem;
 `;
-
+const Error = styled(Text)`
+  min-height: 1.2rem;
+`;
 export default ({ modalIsOpen, closeModal, onSubmit }) => {
-  const [name, setName] = useState(null);
-  const [date, setDate] = useState(null);
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const parsedDate = Date.parse(date);
+    const timeDiff = Date.now() - parsedDate;
+    if (timeDiff < 0) {
+      setError("Birthday cannot be in the future");
+      return;
+    }
+    if (!name) {
+      setError("Please insert a name");
+      return;
+    } else {
+      onSubmit(name, date);
+    }
+  };
 
   return (
     <div>
@@ -55,27 +74,23 @@ export default ({ modalIsOpen, closeModal, onSubmit }) => {
           <StyledIcon icon={faClose} />
         </ClosingCross>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
+          <Error>{error}</Error>
           <TextField
+            required={true}
             label=""
             placeholder="Name"
             errorMessage="There is an error"
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
+            required={true}
             label=""
             type="date"
             errorMessage="There is an error"
             onChange={(e) => setDate(e.target.value)}
           />
-          <Button
-            variation="primary"
-            onClick={() => {
-              onSubmit(name, date);
-            }}
-          >
-            Add
-          </Button>
+          <input type="submit" />
         </Form>
       </Modal>
     </div>
