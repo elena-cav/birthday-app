@@ -11,10 +11,14 @@
   "dependencies": {
     "@aws-amplify/ui-components": "^1.9.6",
     "@aws-amplify/ui-react": "^3.5.0",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "aws-amplify": "^4.3.33",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-modal": "^3.15.1",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {

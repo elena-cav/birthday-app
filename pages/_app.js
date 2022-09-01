@@ -19,12 +19,17 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   console.log(user);
+  console.log("AUTHENTICATED", isAuthenticated);
 
   useEffect(() => {
     console.log("RERENDERING");
     Auth.currentAuthenticatedUser()
       .then(setUser)
       .catch(() => console.log("no user logged in"));
+
+    if (isAuthenticated) {
+      router.push("/birthdays");
+    }
   }, [isAuthenticated]);
 
   const App = () => {
@@ -32,7 +37,7 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
       setIsAuthenticated(route === "authenticated");
-    }, [route])
+    }, [route]);
 
     return (
       <PageGrid>
@@ -40,7 +45,11 @@ function MyApp({ Component, pageProps }) {
           setIsAuthenticated={setIsAuthenticated}
           isAuthenticated={isAuthenticated}
         />
-        <Component {...pageProps} user={user} isAuthenticated={isAuthenticated} />
+        <Component
+          {...pageProps}
+          user={user}
+          isAuthenticated={isAuthenticated}
+        />
       </PageGrid>
     );
   };

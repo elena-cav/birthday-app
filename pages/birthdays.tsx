@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { withSSRContext } from "aws-amplify";
+import styled from "styled-components";
 import Head from "next/head";
+import Modal from "../src/components/Modal";
 import { Auth } from "aws-amplify";
 
 import { listUsers } from "../src/graphql/queries";
@@ -27,6 +29,7 @@ export default function Birthdays({ user }) {
       <main className={styles.main}>
         <h1 className={styles.title}>Birthdays for {user?.attributes?.name}</h1>
       </main>
+      <Modal />
     </div>
   );
 }

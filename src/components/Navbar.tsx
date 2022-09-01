@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import React from "react";
-import Link from 'next/link'
+import React, { useEffect } from "react";
+import Link from "next/link";
 
 const NavBarWrapper = styled.div`
   margin: 2rem 3rem;
@@ -34,11 +34,18 @@ export default ({ isAuthenticated, setIsAuthenticated }) => {
       console.log("error signing out: ", error);
     }
   }
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     router.push("/birthdays");
+  //   }
+  // });
 
   console.log("AUTHENTICATED", isAuthenticated);
   return (
     <NavBarWrapper>
-      <Title><Link href="/">Birthdays</Link></Title>
+      <Title>
+        <Link href="/">Birthdays</Link>
+      </Title>
       <AuthButton variation="primary" type="button" onClick={loginSignout}>
         {isAuthenticated ? "Sign out" : "Login"}
       </AuthButton>

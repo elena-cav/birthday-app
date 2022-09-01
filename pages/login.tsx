@@ -45,7 +45,7 @@ export default () => (
     >
       {({ user }) => (
         <main>
-          <h1>Thanks, {user?.attributes?.name} you are now logged in!</h1>
+          {/* <h1>Thanks, {user?.attributes?.name} you are now logged in!</h1> */}
         </main>
       )}
     </Authenticator>
