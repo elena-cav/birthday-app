@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { TextField, Button } from "@aws-amplify/ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,7 +37,10 @@ const Form = styled.form`
   gap: 1rem;
 `;
 
-export default ({ modalIsOpen, closeModal }) => {
+export default ({ modalIsOpen, closeModal, onSubmit }) => {
+  const [name, setName] = useState(null);
+  const [date, setDate] = useState(null);
+
   return (
     <div>
       <Modal
@@ -57,11 +60,22 @@ export default ({ modalIsOpen, closeModal }) => {
             label=""
             placeholder="Name"
             errorMessage="There is an error"
+            onChange={setName}
           />
-
-          <TextField label="" type="date" errorMessage="There is an error" />
-
-          <Button variation="primary" onClick={() => {}}>Add</Button>
+          <TextField
+            label=""
+            type="date"
+            errorMessage="There is an error"
+            onChange={setDate}
+          />
+          <Button
+            variation="primary"
+            onClick={() => {
+              onSubmit(name, date);
+            }}
+          >
+            Add
+          </Button>
         </Form>
       </Modal>
     </div>

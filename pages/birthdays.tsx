@@ -8,24 +8,10 @@ import Modal from "../src/components/Modal";
 import { getUser } from "../src/graphql/queries";
 import { updateUser } from "../src/graphql/mutations";
 import styles from "../styles/Home.module.css";
-
-const createBirthday = async (newBirthday) => {
-  const oldBirthdays = [];
-  await API.graphql(graphqlOperation(updateUser, { input: { birthdays: [...oldBirthdays, newBirthday] }}));
-}
-
-const getBirthdays = async (user) => {
-  const userData = await API.graphql(graphqlOperation(getUser, { userId: "" }));
-
-  console.log(userData);
-  
-  // return userData.birthdays;
-}
+import addBirthdaysToUser from "../src/domain/addBirthdaysToUser";
 
 export default ({ cognitoUser, user }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  console.log(user);
 
   return (
     <div className={styles.container}>
@@ -39,10 +25,20 @@ export default ({ cognitoUser, user }) => {
         <Button variation="primary" onClick={() => setModalIsOpen(true)}>Add Birthday</Button>
         <h2>Birthdays</h2>
         {user?.birthdays?.map((birthday) => (
-          <span>{birthday}</span>
+          <>
+            <span>{birthday.name}</span>
+            <span>{birthday.date}</span>
+          </>
         ))}
       </main>
-      <Modal modalIsOpen={modalIsOpen} closeModal={() => setModalIsOpen(false)} />
+      <Modal 
+        modalIsOpen={modalIsOpen} 
+        closeModal={() => setModalIsOpen(false)}
+        onSubmit={(name, date) => {
+          addBirthdaysToUser(cognitoUser, { name, date })
+            .then(res => console.log(res))
+        }}
+      />
     </div>
   );
 }

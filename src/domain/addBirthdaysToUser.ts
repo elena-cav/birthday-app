@@ -5,10 +5,10 @@ import getUserFromDatabase from "./getUserFromDatabase";
 
 export default async (user, newBirthday) => {
   if (!user.attributes) return;
-
+  
   const userFromDatabase = await getUserFromDatabase(user.attributes.sub);
 
-  if (userFromDatabase?.data?.getUser) return;
+  if (!userFromDatabase?.data?.getUser) return;
 
   const currentBirthdays = userFromDatabase.data.getUser.birthdays;
 
