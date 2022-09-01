@@ -1,24 +1,30 @@
 import React, { useState } from "react";
-import { withSSRContext } from "aws-amplify";
-import styled from "styled-components";
+import { API, graphqlOperation } from "aws-amplify";
 import Head from "next/head";
-import Modal from "../src/components/Modal";
-import { Auth } from "aws-amplify";
+import { Button } from "@aws-amplify/ui-react";
 
-import { listUsers } from "../src/graphql/queries";
+import Modal from "../src/components/Modal";
+
+import { listUsers, getUser } from "../src/graphql/queries";
+import { updateUser } from "../src/graphql/mutations";
 import styles from "../styles/Home.module.css";
 
-export async function getServerSideProps({ req }) {
-  const SSR = withSSRContext({ req });
-  const response = await SSR.API.graphql({ query: listUsers });
-  return {
-    props: {
-      posts: response.data.listUsers,
-    },
-  };
+const createBirthday = async (newBirthday) => {
+  const oldBirthdays = [];
+  await API.graphql(graphqlOperation(updateUser, { input: { birthdays: [...oldBirthdays, newBirthday] }}));
 }
 
-export default function Birthdays({ user }) {
+const getBirthdays = async (user) => {
+  const userData = await API.graphql(graphqlOperation(getUser, { userId: "" }));
+
+  console.log(userData);
+  
+  // return userData.birthdays;
+}
+
+export default ({ cognitoUser }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,10 +32,11 @@ export default function Birthdays({ user }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>Birthdays for {user?.attributes?.name}</h1>
+      <main>
+        <h2>Birthdays for {cognitoUser?.attributes?.name}</h2>
+        <Button variation="primary" onClick={() => setModalIsOpen(true)}>Add Birthday</Button>
       </main>
-      <Modal />
+      <Modal modalIsOpen={modalIsOpen} closeModal={() => setModalIsOpen(false)} />
     </div>
   );
 }

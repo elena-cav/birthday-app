@@ -8,29 +8,31 @@ import "../styles/globals.css";
 import awsExports from "../src/aws-exports";
 import Navbar from "../src/components/Navbar";
 import PageGrid from "../src/components/PageGrid";
-import App from "next/app";
+
+import addUserToDatabase from "../src/domain/addUserToDatabase";
 
 Amplify.configure({ ...awsExports, ssr: true });
 Auth.configure(awsExports);
 
 function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({});
+  const [cognitoUser, setCognitoUser] = useState({});
   const router = useRouter();
 
-  console.log(user);
-  console.log("AUTHENTICATED", isAuthenticated);
-
   useEffect(() => {
-    console.log("RERENDERING");
     Auth.currentAuthenticatedUser()
-      .then(setUser)
+      .then(setCognitoUser)
       .catch(() => console.log("no user logged in"));
 
     if (isAuthenticated) {
       router.push("/birthdays");
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    addUserToDatabase(cognitoUser)
+      .catch((e) => console.log(e))
+  }, [cognitoUser]);
 
   const App = () => {
     const { route } = useAuthenticator((context) => [context.route]);
@@ -47,7 +49,7 @@ function MyApp({ Component, pageProps }) {
         />
         <Component
           {...pageProps}
-          user={user}
+          cognitoUser={cognitoUser}
           isAuthenticated={isAuthenticated}
         />
       </PageGrid>

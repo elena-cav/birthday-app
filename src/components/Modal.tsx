@@ -37,20 +37,9 @@ const Form = styled.form`
   gap: 1rem;
 `;
 
-export default () => {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
+export default ({ modalIsOpen, closeModal }) => {
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

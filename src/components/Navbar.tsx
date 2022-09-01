@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 const NavBarWrapper = styled.div`
-  margin: 2rem 3rem;
+  padding: 2rem 3rem;
 `;
 
 const Title = styled.h1`
@@ -34,13 +34,7 @@ export default ({ isAuthenticated, setIsAuthenticated }) => {
       console.log("error signing out: ", error);
     }
   }
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     router.push("/birthdays");
-  //   }
-  // });
 
-  console.log("AUTHENTICATED", isAuthenticated);
   return (
     <NavBarWrapper>
       <Title>
