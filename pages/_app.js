@@ -17,6 +17,7 @@ Auth.configure(awsExports);
 function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [cognitoUser, setCognitoUser] = useState({});
+  const [user, setUser] = useState({});
   const router = useRouter();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     addUserToDatabase(cognitoUser)
+      .then(setUser)
       .catch((e) => console.log(e))
   }, [cognitoUser]);
 
@@ -49,8 +51,9 @@ function MyApp({ Component, pageProps }) {
         />
         <Component
           {...pageProps}
-          cognitoUser={cognitoUser}
           isAuthenticated={isAuthenticated}
+          cognitoUser={cognitoUser}
+          user={user}
         />
       </PageGrid>
     );

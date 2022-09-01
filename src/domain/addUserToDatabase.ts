@@ -8,7 +8,7 @@ export default async (user) => {
 
   const userFromDatabase = await getUserFromDatabase(user.attributes.sub);
 
-  if (userFromDatabase?.data?.getUser) return;
+  if (userFromDatabase?.data?.getUser) return userFromDatabase?.data?.getUser;
 
   const { data } = await API.graphql(graphqlOperation(createUser, { 
     input: {
