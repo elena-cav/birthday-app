@@ -1,56 +1,56 @@
 {
-    "api": {
-        "birthdayapp": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "defaultAuthentication": {
-                        "authenticationType": "API_KEY",
-                        "apiKeyConfig": {
-                            "apiKeyExpirationDays": 7
-                        }
-                    },
-                    "additionalAuthenticationProviders": []
-                }
+  "api": {
+    "birthdayapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
             }
+          },
+          "additionalAuthenticationProviders": []
         }
-    },
-    "auth": {
-        "birthdayappe1082c8b": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false,
-            "frontendAuthConfig": {
-                "socialProviders": [
-                    "FACEBOOK",
-                    "GOOGLE"
-                ],
-                "usernameAttributes": [
-                    "EMAIL"
-                ],
-                "signupAttributes": [
-                    "EMAIL"
-                ],
-                "passwordProtectionSettings": {
-                    "passwordPolicyMinLength": 8,
-                    "passwordPolicyCharacters": []
-                },
-                "mfaConfiguration": "OFF",
-                "mfaTypes": [
-                    "SMS"
-                ],
-                "verificationMechanisms": [
-                    "EMAIL"
-                ]
-            }
-        }
-    },
-    "hosting": {
-        "amplifyhosting": {
-            "service": "amplifyhosting",
-            "type": "cicd"
-        }
+      }
     }
+  },
+  "auth": {
+    "birthdayappe1082c8b": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      }
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd"
+    }
+  }
 }

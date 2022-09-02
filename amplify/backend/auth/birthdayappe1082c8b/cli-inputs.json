@@ -14,7 +14,7 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
+    "emailVerificationSubject": "Birthday App - Verify your email",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
@@ -36,17 +36,11 @@
     "sharedId": "e1082c8b",
     "resourceName": "birthdayappe1082c8b",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
+    "useDefault": "manual",
+    "hostedUI": false,
     "usernameAttributes": [
       "email"
     ],
-    "hostedUIDomainName": "birthdayappe1082c8b-e1082c8b",
-    "authProvidersUserPool": [
-      "Facebook",
-      "Google"
-    ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -65,7 +59,14 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "hostedUIProviderCreds": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/birthdays/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
+    "authProviders": [],
+    "thirdPartyAuth": false,
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {},
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }

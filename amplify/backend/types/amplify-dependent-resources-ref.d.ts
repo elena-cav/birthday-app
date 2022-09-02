@@ -10,8 +10,6 @@ export type AmplifyDependentResourcesAttributes = {
         "birthdayappe1082c8b": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
-            "HostedUIDomain": "string",
-            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",

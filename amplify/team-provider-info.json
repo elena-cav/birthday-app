@@ -1,25 +1,49 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-birthdayapp-dev-122534-authRole",
-      "UnauthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-dev-122534-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-dev-122534-authRole",
+      "AuthRoleName": "amplify-birthdayapp-dev-130623-authRole",
+      "UnauthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-dev-130623-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-dev-130623-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-birthdayapp-dev-122534-deployment",
-      "UnauthRoleName": "amplify-birthdayapp-dev-122534-unauthRole",
-      "StackName": "amplify-birthdayapp-dev-122534",
-      "StackId": "arn:aws:cloudformation:eu-west-1:866474589211:stack/amplify-birthdayapp-dev-122534/40e99570-2917-11ed-b9e6-067c641e22d1",
-      "AmplifyAppId": "d2f54p4t0xxbzh"
+      "DeploymentBucketName": "amplify-birthdayapp-dev-130623-deployment",
+      "UnauthRoleName": "amplify-birthdayapp-dev-130623-unauthRole",
+      "StackName": "amplify-birthdayapp-dev-130623",
+      "StackId": "arn:aws:cloudformation:eu-west-1:866474589211:stack/amplify-birthdayapp-dev-130623/495ae350-2aaf-11ed-8c54-02d946a05c0d",
+      "AmplifyAppId": "d2jlavh005jour"
     },
     "categories": {
-      "auth": {
-        "birthdayappe1082c8b": {}
-      },
       "hosting": {
         "amplifyhosting": {
-          "appId": "d2f54p4t0xxbzh",
+          "appId": "d2jlavh005jour",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "birthdayappe1082c8b": {}
+      }
+    }
+  },
+  "devone": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-birthdayapp-devone-143642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-devone-143642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::866474589211:role/amplify-birthdayapp-devone-143642-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-birthdayapp-devone-143642-deployment",
+      "UnauthRoleName": "amplify-birthdayapp-devone-143642-unauthRole",
+      "StackName": "amplify-birthdayapp-devone-143642",
+      "StackId": "arn:aws:cloudformation:eu-west-1:866474589211:stack/amplify-birthdayapp-devone-143642/e70d1a80-2abb-11ed-a323-0a903ac9ac53",
+      "AmplifyAppId": "d2jlavh005jour"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2jlavh005jour",
+          "type": "cicd"
+        }
+      },
+      "auth": {
+        "birthdayappe1082c8b": {}
       }
     }
   }
