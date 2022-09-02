@@ -35,17 +35,33 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  input {
+  }
 `;
 const Error = styled(Text)`
   min-height: 1.2rem;
+  color: #eb1d36;
+  text-align: center;
 `;
-export default ({ modalIsOpen, closeModal, onSubmit }) => {
+const Success = styled(Text)`
+  min-height: 1.2rem;
+  text-align: center;
+`;
+export default ({
+  modalIsOpen,
+  closeModal,
+  onSubmit,
+  successMessage,
+  setSuccessMessage,
+}) => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
     const parsedDate = Date.parse(date);
     const timeDiff = Date.now() - parsedDate;
     if (timeDiff < 0) {
@@ -68,15 +84,19 @@ export default ({ modalIsOpen, closeModal, onSubmit }) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <LandingPageTitle text="Add a new birthday" />
+        <LandingPageTitle size="3rem" text="Add a new birthday" />
 
         <ClosingCross onClick={closeModal}>
           <StyledIcon icon={faClose} />
         </ClosingCross>
 
         <Form onSubmit={handleSubmit}>
+          <Success>{successMessage}</Success>
           <Error>{error}</Error>
           <TextField
+            onFocus={() => {
+              setSuccessMessage("");
+            }}
             required={true}
             label=""
             placeholder="Name"
@@ -84,13 +104,19 @@ export default ({ modalIsOpen, closeModal, onSubmit }) => {
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
+            onFocus={() => {
+              setSuccessMessage("");
+            }}
             required={true}
             label=""
             type="date"
             errorMessage="There is an error"
             onChange={(e) => setDate(e.target.value)}
           />
-          <input type="submit" />
+          <input
+            className="amplify-button--primary amplify-button"
+            type="submit"
+          />
         </Form>
       </Modal>
     </div>

@@ -9,6 +9,7 @@ import addBirthdaysToUser from "../src/domain/addBirthdaysToUser";
 
 export default ({ cognitoUser, user }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
   const calculateAge = (birthday) => {
     const ageDifMs = Date.now() - Date.parse(birthday);
@@ -41,28 +42,31 @@ export default ({ cognitoUser, user }) => {
         <h2>Birthdays</h2>
         <BirthdaysWrapper>
           {user?.birthdays?.map(({ name, date }, i) => (
-            <>
-              <Card key={i}>
-                <Flex direction="column" alignItems="flex-start" gap={2}>
-                  <Heading level={5}>{name}</Heading>
-                  <Text as="span">{date}</Text>
-                  <Text as="span">{calculateAge(date)} years old</Text>
-                  <Button variation="primary">Send a card</Button>
-                  <Button variation="primary">Find a gift</Button>
-                </Flex>
-              </Card>
-            </>
+            <Card key={i}>
+              <Flex direction="column" alignItems="flex-start" gap={2}>
+                <Heading level={5}>{name}</Heading>
+                <Text as="span">{date}</Text>
+                <Text as="span">{calculateAge(date)} years old</Text>
+                <Button variation="primary">Send a card</Button>
+                <Button variation="primary">Find a gift</Button>
+              </Flex>
+            </Card>
           ))}
         </BirthdaysWrapper>
       </main>
       <Modal
+        setSuccessMessage={setSuccessMessage}
+        successMessage={successMessage}
         modalIsOpen={modalIsOpen}
         closeModal={() => {
           setModalIsOpen(false);
           router.reload();
         }}
-        onSubmit={(name, date) => {
-          addBirthdaysToUser(cognitoUser, { name, date });
+        onSubmit={async (name, date) => {
+          const newUser = await addBirthdaysToUser(cognitoUser, { name, date });
+          if (newUser) {
+            setSuccessMessage(`${name}'s birthday successfully added`);
+          }
         }}
       />
     </div>
