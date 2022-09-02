@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
     if (isAuthenticated) {
       router.push("/birthdays");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     addUserToDatabase(cognitoUser)

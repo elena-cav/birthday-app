@@ -16,7 +16,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <LandingPageTitle text="Never forget a birthday again" />
+        <LandingPageTitle
+          text="Never forget a birthday again"
+          size={undefined}
+        />
 
         <LandingPageInformationGrid />
       </main>
