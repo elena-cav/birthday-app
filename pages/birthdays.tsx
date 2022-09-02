@@ -33,7 +33,6 @@ export default ({ cognitoUser, user }) => {
         <title>Birthdays</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main>
         <h2>Birthdays for {cognitoUser?.attributes?.name}</h2>
         <Button variation="primary" onClick={() => setModalIsOpen(true)}>

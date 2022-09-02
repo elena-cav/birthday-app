@@ -12,11 +12,7 @@ const Wrapper = styled.div`
 
 export default () => (
   <Wrapper>
-    <Authenticator
-      signUpAttributes={["email", "name"]}
-      socialProviders={["google", "facebook"]}
-      initialState="signUp"
-    >
+    <Authenticator signUpAttributes={["email", "name"]} initialState="signUp">
       {() => <main />}
     </Authenticator>
   </Wrapper>
