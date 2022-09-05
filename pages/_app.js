@@ -28,7 +28,8 @@ function MyApp({ Component, pageProps }) {
     if (isAuthenticated) {
       router.push("/birthdays");
     }
-  }, [isAuthenticated, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   useEffect(() => {
     addUserToDatabase(cognitoUser)
@@ -38,7 +39,6 @@ function MyApp({ Component, pageProps }) {
 
   const App = () => {
     const { route } = useAuthenticator((context) => [context.route]);
-
     useEffect(() => {
       setIsAuthenticated(route === "authenticated");
     }, [route]);
