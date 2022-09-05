@@ -17,6 +17,7 @@ export default async (user) => {
       input: {
         id: user.attributes.sub,
         name: user.attributes.name,
+        email: user.attributes.email,
         birthdays: [],
       },
     })

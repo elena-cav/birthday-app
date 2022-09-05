@@ -6,6 +6,7 @@ input AMPLIFY {
 type User @model {
   id: ID!
   name: String!
+  email: AWSEmail!
   birthdays: [Birthday]
 }
 

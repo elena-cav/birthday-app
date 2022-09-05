@@ -7,6 +7,7 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
+      email
       birthdays {
         name
         date
@@ -26,6 +27,7 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         name
+        email
         birthdays {
           name
           date

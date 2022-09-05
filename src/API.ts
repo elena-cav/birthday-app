@@ -5,6 +5,7 @@
 export type CreateUserInput = {
   id?: string | null,
   name: string,
+  email: string,
   birthdays?: Array< BirthdayInput | null > | null,
 };
 
@@ -15,6 +16,7 @@ export type BirthdayInput = {
 
 export type ModelUserConditionInput = {
   name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
   and?: Array< ModelUserConditionInput | null > | null,
   or?: Array< ModelUserConditionInput | null > | null,
   not?: ModelUserConditionInput | null,
@@ -64,6 +66,7 @@ export type User = {
   __typename: "User",
   id: string,
   name: string,
+  email: string,
   birthdays?:  Array<Birthday | null > | null,
   createdAt: string,
   updatedAt: string,
@@ -78,6 +81,7 @@ export type Birthday = {
 export type UpdateUserInput = {
   id: string,
   name?: string | null,
+  email?: string | null,
   birthdays?: Array< BirthdayInput | null > | null,
 };
 
@@ -88,6 +92,7 @@ export type DeleteUserInput = {
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
   not?: ModelUserFilterInput | null,
@@ -125,6 +130,7 @@ export type CreateUserMutation = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
@@ -145,6 +151,7 @@ export type UpdateUserMutation = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
@@ -165,6 +172,7 @@ export type DeleteUserMutation = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
@@ -184,6 +192,7 @@ export type GetUserQuery = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
@@ -207,6 +216,7 @@ export type ListUsersQuery = {
       __typename: "User",
       id: string,
       name: string,
+      email: string,
       birthdays?:  Array< {
         __typename: "Birthday",
         name: string,
@@ -224,6 +234,7 @@ export type OnCreateUserSubscription = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
@@ -239,6 +250,7 @@ export type OnUpdateUserSubscription = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
@@ -254,6 +266,7 @@ export type OnDeleteUserSubscription = {
     __typename: "User",
     id: string,
     name: string,
+    email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
       name: string,
