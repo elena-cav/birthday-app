@@ -18,11 +18,7 @@ export default ({ cognitoUser, user, setUser }) => {
     row-gap: 1rem;
     justify-content: flex-start;
   `;
-  const CardWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  `;
+
   return (
     <div className={styles.container}>
       <Head>

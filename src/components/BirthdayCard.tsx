@@ -8,6 +8,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
   color: black;
 `;
+
 const BirthdayCard = styled(Card)`
   position: relative;
 `;
