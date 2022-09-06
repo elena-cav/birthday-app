@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
-import { TextField, Text, Button } from "@aws-amplify/ui-react";
+import { TextField, Text } from "@aws-amplify/ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 

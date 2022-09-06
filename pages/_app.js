@@ -54,6 +54,7 @@ function MyApp({ Component, pageProps }) {
           isAuthenticated={isAuthenticated}
           cognitoUser={cognitoUser}
           user={user}
+          setUser={setUser}
         />
       </PageGrid>
     );

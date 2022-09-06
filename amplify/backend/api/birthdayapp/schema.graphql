@@ -11,6 +11,7 @@ type User @model {
 }
 
 type Birthday {
+  id: ID
   name: String!
   date: AWSDate!
 }

@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Head from "next/head";
-import { Button, Card, Heading, Text, Flex } from "@aws-amplify/ui-react";
-import { useRouter } from "next/router";
+import { Button } from "@aws-amplify/ui-react";
 import Modal from "../src/components/Modal";
 import styles from "../styles/Home.module.css";
 import addBirthdaysToUser from "../src/domain/addBirthdaysToUser";
+import BirthdayCard from "../src/components/BirthdayCard";
 
-export default ({ cognitoUser, user }) => {
+export default ({ cognitoUser, user, setUser }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const router = useRouter();
-  const calculateAge = (birthday) => {
-    const ageDifMs = Date.now() - Date.parse(birthday);
-    const ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  };
+  const updatedUser = useRef() as React.MutableRefObject<HTMLInputElement>;
+
   const BirthdaysWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,16 +36,14 @@ export default ({ cognitoUser, user }) => {
         </Button>
         <h2>Birthdays</h2>
         <BirthdaysWrapper>
-          {user?.birthdays?.map(({ name, date }, i) => (
-            <Card key={i}>
-              <Flex direction="column" alignItems="flex-start" gap={2}>
-                <Heading level={5}>{name}</Heading>
-                <Text as="span">{date}</Text>
-                <Text as="span">{calculateAge(date)} years old</Text>
-                <Button variation="primary">Send a card</Button>
-                <Button variation="primary">Find a gift</Button>
-              </Flex>
-            </Card>
+          {user?.birthdays?.map(({ name, date, birthdayId }) => (
+            <BirthdayCard
+              user={user}
+              name={name}
+              date={date}
+              birthdayId={birthdayId}
+              key={birthdayId}
+            />
           ))}
         </BirthdaysWrapper>
       </main>
@@ -59,13 +53,19 @@ export default ({ cognitoUser, user }) => {
         modalIsOpen={modalIsOpen}
         closeModal={() => {
           setModalIsOpen(false);
-          router.reload();
+          setUser(updatedUser?.current);
         }}
         onSubmit={async (name, date) => {
-          const newUser = await addBirthdaysToUser(cognitoUser, { name, date });
+          const id = Math.random().toString();
+          const newUser = await addBirthdaysToUser(cognitoUser, {
+            name,
+            date,
+            id,
+          });
           if (newUser) {
             setSuccessMessage(`${name}'s birthday successfully added`);
           }
+          updatedUser.current = newUser;
         }}
       />
     </div>

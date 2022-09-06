@@ -10,6 +10,7 @@ export type CreateUserInput = {
 };
 
 export type BirthdayInput = {
+  id?: string | null,
   name: string,
   date: string,
 };
@@ -74,6 +75,7 @@ export type User = {
 
 export type Birthday = {
   __typename: "Birthday",
+  id?: string | null,
   name: string,
   date: string,
 };
@@ -133,6 +135,7 @@ export type CreateUserMutation = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
@@ -154,6 +157,7 @@ export type UpdateUserMutation = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
@@ -175,6 +179,7 @@ export type DeleteUserMutation = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
@@ -195,6 +200,7 @@ export type GetUserQuery = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
@@ -219,6 +225,7 @@ export type ListUsersQuery = {
       email: string,
       birthdays?:  Array< {
         __typename: "Birthday",
+        id?: string | null,
         name: string,
         date: string,
       } | null > | null,
@@ -237,6 +244,7 @@ export type OnCreateUserSubscription = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
@@ -253,6 +261,7 @@ export type OnUpdateUserSubscription = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
@@ -269,6 +278,7 @@ export type OnDeleteUserSubscription = {
     email: string,
     birthdays?:  Array< {
       __typename: "Birthday",
+      id?: string | null,
       name: string,
       date: string,
     } | null > | null,
