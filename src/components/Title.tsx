@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 const Title = styled.h1`
   text-align: center;
-  margin: 0;
+  margin: 1rem 0 0 0;
   line-height: 1.15;
   font-size: ${({ size }) => size || "4rem"};
   background-image: linear-gradient(

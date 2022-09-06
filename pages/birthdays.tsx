@@ -16,7 +16,11 @@ export default ({ cognitoUser, user, setUser }) => {
     display: grid;
     grid-gap: 1rem;
     justify-content: flex-start;
+
     grid-template-columns: 1fr 1fr 1fr;
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
   `;
 
   return (

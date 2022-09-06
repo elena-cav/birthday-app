@@ -15,8 +15,10 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    borderRadius: "1rem",
   },
 };
+
 const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
   color: black;
@@ -39,15 +41,18 @@ const Form = styled.form`
   input {
   }
 `;
+
 const Error = styled(Text)`
   min-height: 1.2rem;
   color: #eb1d36;
   text-align: center;
 `;
+
 const Success = styled(Text)`
   min-height: 1.2rem;
   text-align: center;
 `;
+
 export default ({
   modalIsOpen,
   closeModal,
