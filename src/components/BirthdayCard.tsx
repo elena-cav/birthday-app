@@ -8,6 +8,9 @@ const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
   color: black;
 `;
+const BirthdayCard = styled(Card)`
+  position: relative;
+`;
 
 const ClosingCross = styled.button`
   position: absolute;
@@ -18,7 +21,7 @@ const ClosingCross = styled.button`
   cursor: pointer;
 `;
 
-export default ({ name, birthdayId, date, user }) => {
+export default ({ name, id, date, user, setUser }) => {
   const calculateAge = (birthday) => {
     const ageDifMs = Date.now() - Date.parse(birthday);
     const ageDate = new Date(ageDifMs);
@@ -26,10 +29,11 @@ export default ({ name, birthdayId, date, user }) => {
   };
 
   return (
-    <Card key={birthdayId}>
+    <BirthdayCard key={id}>
       <ClosingCross
         onClick={() => {
-          deleteBirthdayfromUser(user.id, birthdayId);
+          const newUser = deleteBirthdayfromUser(user.id, id);
+          setUser(newUser);
         }}
       >
         <StyledIcon icon={faClose} />
@@ -41,6 +45,6 @@ export default ({ name, birthdayId, date, user }) => {
         <Button variation="primary">Send a card</Button>
         <Button variation="primary">Find a gift</Button>
       </Flex>
-    </Card>
+    </BirthdayCard>
   );
 };

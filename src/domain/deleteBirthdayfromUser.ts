@@ -7,6 +7,7 @@ export default async (userId, birthdayToDelete) => {
   const userFromDatabase = (await getUserFromDatabase(userId)) as {
     data: any;
   };
+  console.log(userId, birthdayToDelete);
 
   if (!userFromDatabase?.data?.getUser) return;
 

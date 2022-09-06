@@ -36,13 +36,14 @@ export default ({ cognitoUser, user, setUser }) => {
         </Button>
         <h2>Birthdays</h2>
         <BirthdaysWrapper>
-          {user?.birthdays?.map(({ name, date, birthdayId }) => (
+          {user?.birthdays?.map(({ name, date, id }) => (
             <BirthdayCard
               user={user}
               name={name}
               date={date}
-              birthdayId={birthdayId}
-              key={birthdayId}
+              id={id}
+              key={id}
+              setUser={setUser}
             />
           ))}
         </BirthdaysWrapper>
