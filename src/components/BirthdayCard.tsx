@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
+import ClosingCross from "../components/ClosingCross";
+
 const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
   color: black;
@@ -25,13 +27,10 @@ const BirthdayCard = styled(Card)`
   }
 `;
 
-const ClosingCross = styled.button`
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export default ({ name, id, date, user, setUser }) => {
@@ -52,11 +51,20 @@ export default ({ name, id, date, user, setUser }) => {
         <StyledIcon icon={faClose} />
       </ClosingCross>
       <Flex direction="column" alignItems="flex-start" gap={2}>
-        <Heading color="white" level={5}>{name}</Heading>
-        <Text color="white" as="span">{date}</Text>
-        <Text color="white" as="span">{calculateAge(date)} years old</Text>
-        <Button variation="primary">Send a card</Button>
-        <Button variation="primary">Find a gift</Button>
+        <Heading color="white" level={5}>
+          {name}
+        </Heading>
+        <Text color="white" as="span">
+          {date}
+        </Text>
+        <Text color="white" as="span">
+          {calculateAge(date)} years old
+        </Text>
+
+        <ButtonContainer>
+          <Button variation="primary">Send a card</Button>
+          <Button variation="primary">Find a gift</Button>
+        </ButtonContainer>
       </Flex>
     </BirthdayCard>
   );

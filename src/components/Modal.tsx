@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 import LandingPageTitle from "../components/Title";
+import ClosingCross from "../components/ClosingCross";
 
 const customStyles = {
   content: {
@@ -22,15 +23,6 @@ const customStyles = {
 const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
   color: black;
-`;
-
-const ClosingCross = styled.button`
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
 `;
 
 const Form = styled.form`
