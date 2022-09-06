@@ -13,10 +13,10 @@ export default ({ cognitoUser, user, setUser }) => {
   const updatedUser = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const BirthdaysWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
+    display: grid;
+    grid-gap: 1rem;
     justify-content: flex-start;
+    grid-template-columns: 1fr 1fr 1fr;
   `;
 
   return (
