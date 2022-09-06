@@ -7,21 +7,21 @@ import styles from "../styles/Home.module.css";
 import addBirthdaysToUser from "../src/domain/addBirthdaysToUser";
 import BirthdayCard from "../src/components/BirthdayCard";
 
+const BirthdaysWrapper = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  justify-content: flex-start;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+`;
+
 export default ({ cognitoUser, user, setUser }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const updatedUser = useRef() as React.MutableRefObject<HTMLInputElement>;
-
-  const BirthdaysWrapper = styled.div`
-    display: grid;
-    grid-gap: 1rem;
-    justify-content: flex-start;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    @media (min-width: 1024px) {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
-  `;
 
   return (
     <div className={styles.container}>
