@@ -7,12 +7,16 @@ import styled from "styled-components";
 import ClosingCross from "../components/ClosingCross";
 
 const StyledIcon = styled(FontAwesomeIcon)`
-  height: 32px;
+  height: 28px;
   color: #414361;
 
   &:hover {
     color: #2a2d43;
   }
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 0.5rem;
 `;
 
 const BirthdayCard = styled(Card)`
@@ -71,8 +75,8 @@ export default ({ name, id, date, user, setUser }) => {
         </Text>
 
         <ButtonContainer>
-          <Button variation="primary">Send a card</Button>
-          <Button variation="primary">Find a gift</Button>
+          <StyledButton variation="primary">Send a card</StyledButton>
+          <StyledButton variation="primary">Find a gift</StyledButton>
         </ButtonContainer>
       </Flex>
     </BirthdayCard>

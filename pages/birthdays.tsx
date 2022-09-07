@@ -21,7 +21,7 @@ const BirthdaysWrapper = styled.div`
 export default ({ cognitoUser, user, setUser }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const updatedUser = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const updatedUser = useRef(user) as React.MutableRefObject<HTMLInputElement>;
 
   return (
     <div className={styles.container}>

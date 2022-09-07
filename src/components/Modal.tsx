@@ -76,6 +76,7 @@ export default ({
   return (
     <div>
       <Modal
+        ariaHideApp={false}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
