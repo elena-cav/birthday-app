@@ -2,12 +2,7 @@
   padding: 0 2rem;
 }
 
-.amplify-button {
-  background-color: #2274a5;
-}
-.amplify-button:hover {
-  background-color: #185477;
-}
+
 
 @media (min-width: 1024px) {
   .container {

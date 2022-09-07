@@ -2,9 +2,12 @@ import { Button, Card, Heading, Text, Flex } from "@aws-amplify/ui-react";
 import deleteBirthdayfromUser from "../domain/deleteBirthdayfromUser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import GiftIcon from "../../public/gift.svg";
+import BirthdayCardIcon from "../../public/birthday-card.svg";
 import styled from "styled-components";
 
 import ClosingCross from "../components/ClosingCross";
+import Image from "next/image";
 
 const StyledIcon = styled(FontAwesomeIcon)`
   height: 28px;
@@ -17,9 +20,13 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 const StyledButton = styled(Button)`
   margin-top: 0.5rem;
+  max-width: 6rem;
 `;
 
 const BirthdayCard = styled(Card)`
+  flex: 1 0 300px;
+  box-sizing: border-box;
+  margin: 1rem 0.25em;
   position: relative;
   box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
@@ -33,16 +40,23 @@ const BirthdayCard = styled(Card)`
   &:hover {
     transform: scale(1.05);
   }
+
+  @media screen and (min-width: 35em) {
+    max-width: calc(50% - 1em);
+  }
+
+  @media screen and (min-width: 60em) {
+    max-width: calc(25% - 1em);
+  }
+  @media screen and (min-width: 80em) {
+    max-width: calc(20% - 1em);
+  }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   gap: 1rem;
-
-  flex-direction: column;
-  @media (min-width: 1024px) {
-    flex-direction: row;
-  }
+  align-self: center;
 `;
 
 export default ({ name, id, date, user, setUser }) => {
@@ -50,6 +64,14 @@ export default ({ name, id, date, user, setUser }) => {
     const ageDifMs = Date.now() - Date.parse(birthday);
     const ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
+  const parseDate = (date) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return new Date(date).toLocaleDateString("en-UK", options);
   };
 
   return (
@@ -68,15 +90,32 @@ export default ({ name, id, date, user, setUser }) => {
           {name}
         </Heading>
         <Text color="white" as="span">
-          {date}
+          {parseDate(date)}
         </Text>
         <Text color="white" as="span">
           {calculateAge(date)} years old
         </Text>
 
         <ButtonContainer>
-          <StyledButton variation="primary">Send a card</StyledButton>
-          <StyledButton variation="primary">Find a gift</StyledButton>
+          <StyledButton
+            onClick={() => {
+              window.open("https://www.moonpig.com/uk/", "_blank");
+            }}
+            variation="primary"
+          >
+            <Image alt="birthday-card-icon" src={BirthdayCardIcon}></Image>
+          </StyledButton>
+          <StyledButton
+            onClick={() => {
+              window.open(
+                "https://www.amazon.co.uk/?&_encoding=UTF8&tag=birthdayapp-21&linkCode=ur2&linkId=673f2dbadacc321e00320815cb676b3a&camp=1634&creative=6738",
+                "_blank"
+              );
+            }}
+            variation="primary"
+          >
+            <Image alt="gift-icon" src={GiftIcon}></Image>
+          </StyledButton>
         </ButtonContainer>
       </Flex>
     </BirthdayCard>

@@ -8,14 +8,11 @@ import addBirthdaysToUser from "../src/domain/addBirthdaysToUser";
 import BirthdayCard from "../src/components/BirthdayCard";
 
 const BirthdaysWrapper = styled.div`
-  display: grid;
-  grid-gap: 1rem;
+  display: flex;
+  grid-gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: stretch;
   justify-content: flex-start;
-
-  grid-template-columns: 1fr 1fr 1fr;
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
 `;
 
 export default ({ cognitoUser, user, setUser }) => {
@@ -25,16 +22,11 @@ export default ({ cognitoUser, user, setUser }) => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Birthdays</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main>
         <h2>Birthdays for {cognitoUser?.attributes?.name}</h2>
         <Button variation="primary" onClick={() => setModalIsOpen(true)}>
           Add Birthday
         </Button>
-        <h2>Birthdays</h2>
         <BirthdaysWrapper>
           {user?.birthdays?.map(({ name, date, id }) => (
             <BirthdayCard
