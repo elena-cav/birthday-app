@@ -8,7 +8,11 @@ import ClosingCross from "../components/ClosingCross";
 
 const StyledIcon = styled(FontAwesomeIcon)`
   height: 32px;
-  color: black;
+  color: #414361;
+
+  &:hover {
+    color: #2a2d43;
+  }
 `;
 
 const BirthdayCard = styled(Card)`
@@ -47,8 +51,9 @@ export default ({ name, id, date, user, setUser }) => {
   return (
     <BirthdayCard key={id}>
       <ClosingCross
-        onClick={() => {
-          const newUser = deleteBirthdayfromUser(user.id, id);
+        onClick={async () => {
+          const newUser = await deleteBirthdayfromUser(user.id, id);
+          console.log("NEWUSER", newUser);
           setUser(newUser);
         }}
       >

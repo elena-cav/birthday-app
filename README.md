@@ -1,7 +1,7 @@
 # TODO
 
-- Delete button on birthday cards
-- Optimistic rendering when adding new bday
+- Delete button on birthday cards - DONE
+- Optimistic rendering when adding new bday - DONE
 - Style birthdays page
 - Style landing page
 - Add Moonpig integration
